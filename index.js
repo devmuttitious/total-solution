@@ -54,13 +54,14 @@ app.get('/:folder?/:page', (req, res) => {
 
 // Serve index/home page at the root
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', '/Home.html'));
+    res.sendFile(path.join(__dirname, '..', '/index.html'));
 });
 
-// Updated root route for API message
+// Root Endpoint
 app.get('/', (req, res) => {
-    res.send("Your API is working");
+    res.send('Welcome to the API!'); // Welcome message
 });
+
 
 // Start the Server
 app.listen(PORT, () => {
