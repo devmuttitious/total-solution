@@ -57,6 +57,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', '/Home.html'));
 });
 
+// Updated root route for API message
+app.get('/', (req, res) => {
+    res.send("Your API is working");
+});
+
 // Start the Server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
