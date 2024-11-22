@@ -57,10 +57,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', '/index.html'));
 });
 
-// Root Endpoint
-app.get('/', (req, res) => {
-    res.send('Welcome to the API!'); // Welcome message
-});
 
 
 // Start the Server
