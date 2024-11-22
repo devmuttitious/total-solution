@@ -53,14 +53,9 @@ app.get('/:folder?/:page', (req, res) => {
 });
 
 // Serve index/home page at the root
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, '..', '/index.html'));
-// });
-
 app.get('/', (req, res) => {
-    res.send("Api is working!");
+    res.sendFile(path.join(__dirname, '..', '/index.html'));
 });
-
 
 
 // Start the Server
