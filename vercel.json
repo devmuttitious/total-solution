@@ -5,12 +5,12 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/index.js" },
-    { "src": "/uploads/(.*)", "dest": "/backend/uploads/$1" }
+    { "src": "/uploads/(.*)", "dest": "/uploads/$1" }
   ],
   "rewrites": [
     {
       "source": "/uploads/(.*)",
-      "destination": "/backend/uploads/$1"
+      "destination": "/uploads/$1"
     }
   ]
 }
