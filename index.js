@@ -37,15 +37,28 @@ app.use("/api", contactRoutes);
 app.use("/api/career", careerRoutes);
 
 // Serve dynamic static HTML files
-app.get("/:folder?/:page", (req, res) => {
+app.get("/:folder?/:page?", (req, res) => {
     const { folder, page } = req.params;
+
+    // Determine the target folder (projects or car-trade) or default root folder
     const targetFolder = folder && (folder === "projects" || folder === "car-trade") ? folder : "";
-    const filePath = targetFolder
-        ? path.join(__dirname, "..", targetFolder, `${page}.html`)
-        : path.join(__dirname, "..", `${page}.html`);
+
+    let filePath;
+
+    // Serve `index.html` for the root route or dynamically serve other files
+    if (!page) {
+        filePath = targetFolder
+            ? path.join(__dirname, "..", targetFolder, "index.html")
+            : path.join(__dirname, "..", "index.html");
+    } else {
+        filePath = targetFolder
+            ? path.join(__dirname, "..", targetFolder, `${page}.html`)
+            : path.join(__dirname, "..", `${page}.html`);
+    }
 
     console.log("Requested file:", filePath); // Debugging log
 
+    // Check if the file exists before serving
     if (fs.existsSync(filePath)) {
         res.sendFile(filePath);
     } else {
@@ -53,6 +66,7 @@ app.get("/:folder?/:page", (req, res) => {
         res.status(404).send("Page not found");
     }
 });
+
 
 // Root route to show API status
 app.get("/", (req, res) => {
