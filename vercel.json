@@ -1,19 +1,19 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "index.js", "use": "@vercel/node" }
-  ],
-  "routes": [
+    "version": 2,
+    "public": "uploads",
+    "builds": [
+      { "src": "index.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/api/(.*)", "dest": "/index.js" },
+      { "src": "/uploads/(.*)", "dest": "/uploads/$1" }
+    ],
+    "rewrites": [
     {
-      "src": "/uploads/(.*)",
-      "dest": "/uploads/$1",
-      "headers": {
-        "cache-control": "max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/index.js"
+      "source": "/uploads/(.*)",
+      "destination": "/uploads/$1"
     }
   ]
-}
+    
+    
+  }
