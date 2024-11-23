@@ -28,7 +28,6 @@ app.use(express.json());
 // Database Connection
 connectDB();
 
-
 // Serve static files
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, "..")));

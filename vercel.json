@@ -5,13 +5,12 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/index.js" },
-    { "src": "/uploads/(.*)", "dest": "/uploads/$1" }
+    { "src": "/uploads/(.*)", "dest": "/backend/uploads/$1" }
   ],
   "rewrites": [
     {
       "source": "/uploads/(.*)",
-      "destination": "/uploads/$1"
+      "destination": "/backend/uploads/$1"
     }
-  ],
-  "outputDirectory": "backend"
+  ]
 }
