@@ -12,6 +12,6 @@ router.get("/media", mediaController.getAllMedia);
 // Route to delete a media item by ID
 router.delete("/media/:id", mediaController.deleteMedia);
 
-router.get("/media", mediaController.getMediaById);
+router.get("/media/:id", mediaController.getMediaById);
 
 module.exports = router;

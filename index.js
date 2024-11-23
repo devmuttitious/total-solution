@@ -58,7 +58,7 @@ app.get("/:folder?/:page", (req, res) => {
 
 // Root route to show API status
 app.get("/", (req, res) => {
-    res.send("Your API is working");
+    res.send("Your API is working");    
 });
 
 // Start the Server
