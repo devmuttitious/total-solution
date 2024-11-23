@@ -27,6 +27,14 @@ app.use(express.json());
 
 // Database Connection
 connectDB();
+app.get("/uploads/:filename", (req, res) => {
+    const filePath = path.join(__dirname, "uploads", req.params.filename);
+    if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+    } else {
+        res.status(404).send("File not found");
+    }
+});
 
 // Serve static files
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
