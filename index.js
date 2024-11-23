@@ -55,8 +55,9 @@ app.get("/:folder?/:page", (req, res) => {
 });
 
 // Serve index/home page at the root
+// Root route to show API status
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "/index.html"));
+    res.send("Your API is working");
 });
 
 // Start the Server
