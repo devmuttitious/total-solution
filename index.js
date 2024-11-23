@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-    origin: ["https://tst.com.sa", "http://localhost:3000", "https://total-solution.vercel.app/",], // Add localhost for testing
+    origin: ["https://tst.com.sa", "http://localhost:3000", "https://total-solution.vercel.app",], // Add localhost for testing
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
