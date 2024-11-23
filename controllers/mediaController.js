@@ -62,19 +62,29 @@ exports.deleteMedia = async (req, res) => {
   }
 };
 
-// Get a single media item by ID
 exports.getMediaById = async (req, res) => {
-    try {
-      const mediaId = req.params.id;
-      const media = await Media.findById(mediaId); // Use your ORM's findById method
-  
-      if (!media) {
-        return res.status(404).json({ message: 'Media not found' });
-      }
-  
-      res.json(media);
-    } catch (error) {
-      console.error('Error fetching media by ID:', error);
-      res.status(500).json({ message: 'Server error' });
+  try {
+    // Get the media ID from the query string
+    const mediaId = req.query.id; // Use req.query.id for query parameters
+    
+    if (!mediaId) {
+      return res.status(400).json({ message: 'Media ID is required' });
     }
-  };
+
+    // Fetch the media from the database
+    const media = await Media.findById(mediaId); // Assuming you're using a MongoDB model
+
+    // If no media is found, return a 404 error
+    if (!media) {
+      return res.status(404).json({ message: 'Media not found' });
+    }
+
+    // Send back the media details as JSON
+    res.json(media);
+  } catch (error) {
+    console.error('Error fetching media by ID:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
