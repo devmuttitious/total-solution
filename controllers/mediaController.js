@@ -1,12 +1,13 @@
 const Media = require("../models/mediaModel");
 
-// Create new media
+// Create a new media item
 exports.createMedia = async (req, res) => {
   try {
-    const { image, altText, date, title, description, learnMoreUrl } = req.body;
+    const { altText, date, title, description, learnMoreUrl } = req.body;
+    const image = req.file.filename;
 
     const newMedia = new Media({
-      image, // Base64 string received from the client
+      image,
       altText,
       date,
       title,
