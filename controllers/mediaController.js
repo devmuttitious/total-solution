@@ -1,4 +1,5 @@
 const Media = require("../models/mediaModel");
+const fs = require("fs");
 
 // Create a new media item
 exports.createMedia = async (req, res) => {
@@ -23,7 +24,6 @@ exports.createMedia = async (req, res) => {
 };
 
 // Get all media items
-// Get all media items with pagination
 exports.getAllMedia = async (req, res) => {
     try {
       const { page = 1, limit = 6 } = req.query; // Default to page 1 and limit of 6
@@ -51,11 +51,9 @@ exports.deleteMedia = async (req, res) => {
       return res.status(404).json({ message: "Media item not found" });
     }
 
-    // Optionally, remove the image file from the server
-    const fs = require("fs");
     fs.unlinkSync(`uploads/${media.image}`);
-
     await Media.findByIdAndDelete(id);
+
     res.status(200).json({ message: "Media item deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
