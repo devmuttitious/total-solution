@@ -1,4 +1,4 @@
-const { sendContactEmail } = require('../modules/sendEmail');
+const { sendContactEmail } = require('../middlewares/sendEmail');
 
 // Controller for handling contact form submissions
 const contactFormController = async (req, res) => {
