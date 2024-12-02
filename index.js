@@ -8,6 +8,7 @@ const mediaRoutes = require("./routes/mediaRoute");
 const contactRoutes = require("./routes/contactRoutes");
 const careerRoutes = require("./routes/careerRoutes");
 const fs = require("fs");
+const bodyParser = require("body-parser");
 
 dotenv.config();
 
@@ -22,6 +23,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
+// Middleware
+app.use(bodyParser.json({ limit: "20mb" })); // Handle large Base64 strings
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Hey i updated
 
