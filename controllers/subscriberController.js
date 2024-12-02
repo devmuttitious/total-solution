@@ -1,5 +1,5 @@
 const Subscriber = require("../models/subscriberModel");
-const { sendThankYouEmail } = require('../modules/sendEmail');  // Import the email sending function
+const { sendThankYouEmail } = require('../middlewares/sendEmail');  // Import the email sending function
 
 const subscribeNewsletter = async (req, res) => {
     const { email } = req.body;
