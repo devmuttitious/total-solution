@@ -80,7 +80,7 @@ app.use("/api/career", careerRoutes);
 
 
 
-// Root route to show API status
+//Root route to show API status
 // app.get("/", (req, res) => {
 //     res.send("Your API is working");    
 // });
