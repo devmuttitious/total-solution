@@ -13,15 +13,19 @@ const transporter = nodemailer.createTransport({
 // Function to handle career form submission
 exports.submitCareerForm = (req, res) => {
     const { name, email, message } = req.body;
-    
+
     // Check if files are uploaded, else default to null
-    const resume = req.files["resume"] ? req.files["resume"][0].path : null;
-    const coverLetter = req.files["coverLetter"] ? req.files["coverLetter"][0].path : null;
+    const resume = req.files["resume"] 
+        ? path.resolve(req.files["resume"][0].path) 
+        : null;
+    const coverLetter = req.files["coverLetter"] 
+        ? path.resolve(req.files["coverLetter"][0].path) 
+        : null;
 
     // Define email options
     const mailOptions = {
         from: email,
-        to: "engineermuttiullah@gmail.com", // Replace with the desired recipient email
+        to: "info@tst.com.sa", // Replace with the desired recipient email
         subject: "New Career Application",
         html: `
             <html>
@@ -30,13 +34,23 @@ exports.submitCareerForm = (req, res) => {
                     <p><strong>Name:</strong> ${name}</p>
                     <p><strong>Email:</strong> ${email}</p>
                     <p><strong>Message:</strong> ${message}</p>
+                    <div id="google_translate_element"></div>
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({
+                                pageLanguage: 'en',
+                                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                                includedLanguages: 'en,ur,ar,es,fr,de'
+                            }, 'google_translate_element');
+                        }
+                    </script>
                 </body>
             </html>
         `,
         attachments: [
-            { path: resume },
-            { path: coverLetter }
-        ]
+            resume && { path: resume },        // Attach resume if provided
+            coverLetter && { path: coverLetter } // Attach cover letter if provided
+        ].filter(Boolean) // Filter out null values
     };
 
     // Send email
