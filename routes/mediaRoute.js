@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../modules/upload");
+const upload = require("../middlewares/multer");
 const mediaController = require("../controllers/mediaController");
 
 // Route to create a media item with image upload
